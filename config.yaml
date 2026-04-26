@@ -2,11 +2,15 @@ products:
   groww:
     app_store_id: "1404871703"
     google_play_id: "com.nextbillion.groww"
-    doc_id: "MOCK_DOC_ID" # Will be replaced in Phase 6
+    doc_id: "19vH-H63-g7umN9rpv4xr7QqGcz2jiqwpLh5FiWtVrNo" # Cleaned up from URL
     stakeholder_emails:
-      - "team@example.com"
+      - "vr41414@gmail.com"
     default_review_window_weeks: 8
 
 logging:
   level: "INFO"
   dir: "data/logs"
+
+delivery:
+  mcp_server_url: "https://my-mcp-server-qgp4.onrender.com"
+

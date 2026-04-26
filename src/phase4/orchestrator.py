@@ -13,6 +13,7 @@ from ..phase1.ingestion import fetch_app_store_reviews, fetch_google_play_review
 from ..phase1.state import is_already_delivered, record_run
 from ..phase2.pipeline import process_reviews
 from ..phase3.renderer import render_markdown, render_email
+from ..phase6.delivery import deliver_report
 
 # Ensure log directory exists
 config = load_config()
@@ -92,12 +93,25 @@ def run_pulse(product: str, iso_week: str = None, weeks: int = None, dry_run: bo
         logger.info("Dry run complete. Saved to data/output/")
         
         # We don't record delivered status on dry run.
-        record_run(product, iso_week, "pending", review_count)
+        record_run(product, iso_week, "dry_run", review_count, theme_count=len(themes))
         
     else:
-        logger.info("DELIVERY: (Phase 6 Placeholder)")
-        # TODO: Phase 6 MCP delivery logic goes here.
-        # record_run(product, iso_week, "delivered", review_count)
+        logger.info("DELIVERY: Executing via MCP Server")
+        try:
+            deliver_report(
+                product=product,
+                doc_id=doc_id,
+                stakeholder_emails=cfg.get("stakeholder_emails", []),
+                markdown_content=doc_md,
+                email_html=email_html,
+                email_subject=subject
+            )
+            record_run(product, iso_week, "delivered", review_count, theme_count=len(themes))
+            logger.info("Pulse successfully delivered and recorded.")
+        except Exception as e:
+            logger.error("Delivery failed: %s", e)
+            record_run(product, iso_week, "failed", review_count, theme_count=len(themes))
+            raise
     
     elapsed = time.time() - start_time
     logger.info("Pulse Agent run completed in %.1fs.", elapsed)
