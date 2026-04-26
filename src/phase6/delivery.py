@@ -26,7 +26,7 @@ def deliver_report(product: str, doc_id: str, stakeholder_emails: list[str], mar
                 "doc_id": doc_id,
                 "content": markdown_content
             },
-            timeout=30
+            timeout=120
         )
         doc_response.raise_for_status()
         logger.info("Successfully appended to Google Doc.")
@@ -51,7 +51,7 @@ def deliver_report(product: str, doc_id: str, stakeholder_emails: list[str], mar
                 "subject": email_subject,
                 "body": email_html
             },
-            timeout=30
+            timeout=120
         )
         email_response.raise_for_status()
         logger.info("Successfully created Gmail draft.")
