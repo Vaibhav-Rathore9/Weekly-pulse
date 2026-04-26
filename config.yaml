@@ -1,0 +1,12 @@
+products:
+  groww:
+    app_store_id: "1404871703"
+    google_play_id: "com.nextbillion.groww"
+    doc_id: "MOCK_DOC_ID" # Will be replaced in Phase 6
+    stakeholder_emails:
+      - "team@example.com"
+    default_review_window_weeks: 8
+
+logging:
+  level: "INFO"
+  dir: "data/logs"

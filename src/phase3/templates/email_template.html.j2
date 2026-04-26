@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: 'Inter', -apple-system, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background: #00D09C; color: white; padding: 20px; border-radius: 8px 8px 0 0; }
+        .content { padding: 20px; border: 1px solid #eaeaea; border-top: none; border-radius: 0 0 8px 8px; }
+        h1 { margin-top: 0; font-size: 24px; }
+        .theme { margin-bottom: 15px; }
+        .theme-name { font-weight: bold; font-size: 16px; color: #111; }
+        .theme-count { color: #666; font-size: 14px; }
+        .btn { display: inline-block; background: #00D09C; color: white; text-decoration: none; padding: 10px 20px; border-radius: 5px; margin-top: 20px; font-weight: 500; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Weekly Pulse: {{ product|title }}</h1>
+        <p style="margin: 0; opacity: 0.9;">{{ iso_week }} • {{ total_reviews }} reviews analyzed</p>
+    </div>
+    <div class="content">
+        <p>Hi Team,</p>
+        <p>The AI Agent has finished processing this week's app reviews. Here are the top {{ [themes|length, 3]|min }} themes driving user sentiment:</p>
+        
+        <ul>
+        {% for theme in themes[:3] %}
+            <li class="theme">
+                <span class="theme-name">{{ theme.name }}</span> 
+                <span class="theme-count">({{ theme.review_count }} mentions)</span>
+                <br>
+                <em>"{{ theme.quotes[0].text if theme.quotes else '...' }}"</em>
+            </li>
+        {% endfor %}
+        </ul>
+        
+        <p>There's much more detailed feedback, including direct user quotes and actionable ideas for the product team.</p>
+        
+        <a href="{{ doc_url }}" class="btn">Read full report &rarr;</a>
+    </div>
+</body>
+</html>

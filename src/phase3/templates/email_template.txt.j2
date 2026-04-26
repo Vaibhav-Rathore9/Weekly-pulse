@@ -1,0 +1,14 @@
+Weekly Pulse: {{ product|title }}
+{{ iso_week }} • {{ total_reviews }} reviews analyzed
+
+Hi Team,
+
+The AI Agent has finished processing this week's app reviews. Here are the top {{ [themes|length, 3]|min }} themes driving user sentiment:
+
+{% for theme in themes[:3] %}
+- {{ theme.name }} ({{ theme.review_count }} mentions)
+  "{{ theme.quotes[0].text if theme.quotes else '...' }}"
+{% endfor %}
+
+Read the full report with action ideas here:
+{{ doc_url }}
