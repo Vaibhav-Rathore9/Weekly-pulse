@@ -7,3 +7,7 @@
 2026-04-26 20:22:28,362  ERROR     src.phase6.delivery  Failed to deliver to Google Doc: HTTPSConnectionPool(host='my-mcp-server-qgp4.onrender.com', port=443): Read timed out. (read timeout=30)
 2026-04-26 20:22:28,362  ERROR     src.phase4.orchestrator  Delivery failed: HTTPSConnectionPool(host='my-mcp-server-qgp4.onrender.com', port=443): Read timed out. (read timeout=30)
 2026-04-26 20:24:57,505  WARNING   huggingface_hub.utils._http  Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-04-26 20:47:55,586  WARNING   huggingface_hub.utils._http  Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-04-26 20:48:38,095  ERROR     src.phase2.llm  LLM call failed: litellm.RateLimitError: RateLimitError: GroqException - {"error":{"message":"Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kpjjg1b1e31r7fyejbwcbsmw` service tier `on_demand` on tokens per minute (TPM): Limit 12000, Used 11334, Requested 939. Please try again in 1.365s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
+
+2026-04-26 20:50:03,543  WARNING   huggingface_hub.utils._http  Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
